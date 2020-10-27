@@ -8,9 +8,9 @@ import java.util.List;
 
 @Repository
 public class StudentRepo {
-    public static List<Student> students = initStudents();
+    public  List<Student> students = initStudents();
 
-    public static List<Student> initStudents() {
+    public  List<Student> initStudents() {
         students=new ArrayList<>();
         students.add(new Student(1, "成吉思汗"));
         students.add(new Student(2, "鲁班七号"));

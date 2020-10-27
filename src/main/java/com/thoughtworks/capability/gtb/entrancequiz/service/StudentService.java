@@ -32,23 +32,24 @@ public class StudentService {
     public ArrayList<Student>[] getAllStudentByGroup() {
         ArrayList<Student>[] groupStudent = new ArrayList[6];
 
-        for(int i=0;i<groupStudent.length;i++) {
+        for (int i = 0; i < groupStudent.length; i++) {
             groupStudent[i] = new ArrayList();
         }
 
-        List<Student> students = studentRepo.getAllStudent();
+        List<Student> studentsRepo = studentRepo.getAllStudent();
+
+        List<Student> tempStudents=new ArrayList<>();
+        tempStudents.addAll(studentsRepo);
 
         Random random = new Random();
 
-        if (students.size() > 0) {
-            for (Student stu : students) {
-                if (stu.getId() < students.size() / 6 * 6) {
-                    int rand = random.nextInt(6);
-                    groupStudent[rand].add(stu);
-                } else {
-                    int rand = random.nextInt(students.size() % 6);
-                    groupStudent[rand].add(stu);
-                }
+        if (tempStudents.size() > 0) {
+            int start = 0;
+            while (tempStudents.size() > 0) {
+                int rand = random.nextInt(tempStudents.size());
+                groupStudent[start%6].add(tempStudents.get(rand));
+                tempStudents.remove(tempStudents.get(rand));
+                start++;
             }
         }
         return groupStudent;
