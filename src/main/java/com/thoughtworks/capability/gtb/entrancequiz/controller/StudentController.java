@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -29,4 +30,13 @@ public class StudentController {
         return ResponseEntity.ok().body(students);
     }
 
+    @CrossOrigin
+    @GetMapping(value = "/students/group", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public ResponseEntity getAllStudentByGroup() {
+        ArrayList<Student>[] groupStudents= studentService.getAllStudentByGroup();
+        if (groupStudents == null) {
+            return ResponseEntity.badRequest().build();
+        }
+        return ResponseEntity.ok().body(groupStudents);
+    }
 }
