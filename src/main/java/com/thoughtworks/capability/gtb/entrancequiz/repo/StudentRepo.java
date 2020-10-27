@@ -34,4 +34,10 @@ public class StudentRepo {
     public List<Student> getAllStudent() {
         return students;
     }
+
+    public int addStudent(String name) {
+        Student student=new Student(students.size()+1,name);
+        students.add(student);
+        return students.size();
+    }
 }

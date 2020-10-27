@@ -32,6 +32,10 @@ public class StudentService {
     public ArrayList<Student>[] getAllStudentByGroup() {
         ArrayList<Student>[] groupStudent = new ArrayList[6];
 
+        for(int i=0;i<groupStudent.length;i++) {
+            groupStudent[i] = new ArrayList();
+        }
+
         List<Student> students = studentRepo.getAllStudent();
 
         Random random = new Random();
@@ -48,5 +52,9 @@ public class StudentService {
             }
         }
         return groupStudent;
+    }
+
+    public int addStudent(String name) {
+        return studentRepo.addStudent(name);
     }
 }

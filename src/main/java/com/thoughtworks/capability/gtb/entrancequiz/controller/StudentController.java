@@ -4,10 +4,7 @@ import com.thoughtworks.capability.gtb.entrancequiz.dto.Student;
 import com.thoughtworks.capability.gtb.entrancequiz.service.StudentService;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,10 +30,17 @@ public class StudentController {
     @CrossOrigin
     @GetMapping(value = "/students/group", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity getAllStudentByGroup() {
-        ArrayList<Student>[] groupStudents= studentService.getAllStudentByGroup();
+        ArrayList<Student>[] groupStudents = studentService.getAllStudentByGroup();
         if (groupStudents == null) {
             return ResponseEntity.badRequest().build();
         }
         return ResponseEntity.ok().body(groupStudents);
+    }
+
+    @CrossOrigin
+    @PostMapping(value = "/student", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public ResponseEntity addStudent(@RequestBody String name) {
+        int index = studentService.addStudent(name);
+        return ResponseEntity.ok().body(index);
     }
 }
