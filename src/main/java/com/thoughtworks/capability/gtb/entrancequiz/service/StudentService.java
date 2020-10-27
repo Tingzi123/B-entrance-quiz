@@ -19,12 +19,14 @@ public class StudentService {
     public List<Student> getAllStudent() {
         List<Student> students = studentRepo.getAllStudent();
 
-        Collections.sort(students, new Comparator<Student>() {
-            @Override
-            public int compare(Student o1, Student o2) {
-                return o1.getId()-o2.getId();
-            }
-        });
+        if (students.size()!=0){
+            Collections.sort(students, new Comparator<Student>() {
+                @Override
+                public int compare(Student o1, Student o2) {
+                    return o1.getId()-o2.getId();
+                }
+            });
+        }
         return students;
     }
 }
