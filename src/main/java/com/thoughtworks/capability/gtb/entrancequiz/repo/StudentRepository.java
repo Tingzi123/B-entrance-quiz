@@ -7,7 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Repository
-public class StudentRepo {
+// TODO GTB-知识点: - Repository应该命名为xxxRepository
+public class StudentRepository {
     public  List<Student> students = initStudents();
 
     public  List<Student> initStudents() {
@@ -36,6 +37,7 @@ public class StudentRepo {
     }
 
     public int addStudent(String name) {
+        // TODO GTB-工程实践: - 计算id的方式不够健壮，可以使用字段保存最大id
         Student student=new Student(students.size()+1,name);
         students.add(student);
         return students.size();
