@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@CrossOrigin
 @RestController
 public class StudentController {
     private StudentService studentService;
@@ -17,7 +18,6 @@ public class StudentController {
         this.studentService = studentService;
     }
 
-    @CrossOrigin
     @GetMapping(value = "/students", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity getAllStudent() {
         List<Student> students = studentService.getAllStudent();
@@ -27,7 +27,7 @@ public class StudentController {
         return ResponseEntity.ok().body(students);
     }
 
-    @CrossOrigin
+
     @GetMapping(value = "/students/group", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity getAllStudentByGroup() {
         ArrayList<Student>[] groupStudents = studentService.getAllStudentByGroup();
@@ -37,7 +37,6 @@ public class StudentController {
         return ResponseEntity.ok().body(groupStudents);
     }
 
-    @CrossOrigin
     @PostMapping(value = "/student", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity addStudent(@RequestBody String name) {
         int index = studentService.addStudent(name);
