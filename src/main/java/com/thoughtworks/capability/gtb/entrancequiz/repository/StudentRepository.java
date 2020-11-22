@@ -1,4 +1,4 @@
-package com.thoughtworks.capability.gtb.entrancequiz.repo;
+package com.thoughtworks.capability.gtb.entrancequiz.repository;
 
 import com.thoughtworks.capability.gtb.entrancequiz.dto.Student;
 import org.springframework.stereotype.Repository;
@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Repository
-// TODO GTB-知识点: - Repository应该命名为xxxRepository
 public class StudentRepository {
     public  List<Student> students = initStudents();
 
